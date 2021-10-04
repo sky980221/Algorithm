@@ -4,7 +4,6 @@ a= int(input())
 x = 0
 i = 0
 
-
 while x < a:
     b= list(input().split())
 
