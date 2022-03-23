@@ -1,14 +1,22 @@
 {
-    "version": "0.2.0",
-    "configurations": [
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Python: Current File",
+      "type": "python",
+      "request": "launch",
+      "program": "${file}",
+      "consolse": "integratedTerminal",
+      "justMyCode": true
+    },
 
-        {
-            "type": "lldb",
-            "request": "launch",
-            "name": "Lldb debug",
-            "program": "${fileDirname}/${fileBasenameNoExtension}",
-            "args": [],
-            "cwd": "${workspaceRoot}"
-        }
-    ]
+    {
+      "type": "lldb",
+      "request": "launch",
+      "name": "Lldb debug",
+      "program": "${fileDirname}/${fileBasenameNoExtension}",
+      "args": [],
+      "cwd": "${workspaceRoot}"
+    }
+  ]
 }
