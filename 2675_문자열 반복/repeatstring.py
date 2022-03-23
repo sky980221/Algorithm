@@ -1,4 +1,3 @@
-
 a= int(input())
 
 x = 0
@@ -13,3 +12,4 @@ while x < a:
         i = i+1
     print("")
     x = x+1
+    
