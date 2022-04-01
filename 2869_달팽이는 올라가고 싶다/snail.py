@@ -7,8 +7,6 @@ A,B,V = list(map(int, input().split()))
 H = A - B 
 
 Day = (V - A) // H 
-if A>= V:
-    Day = 1
 
 if (V-A) % H  ==0:
     Day = Day + 1
