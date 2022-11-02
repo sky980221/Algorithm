@@ -9,7 +9,6 @@ s = sorted(s, key=lambda a: a[1])
 last = 0
 cnt = 0
 
-print(s)
 
 for i, j in s:
     if i >= last:
