@@ -14,20 +14,20 @@ answer = newArray.index(min(newArray))
 print(*answerArray[answer])
 """
 def binary_search(arr):
-    i = 0
-    j = len(arr)-1
+    start = 0   
+    end = N-1
     r = inf
-    while i < j:
-        tmp = arr[i]+arr[j]
+    while start < end:
+        tmp = arr[start]+arr[end]
         if tmp == 0:
-            return arr[i], arr[j]
+            return arr[start], arr[end]
         if abs(tmp) < r:
-            result = (arr[i], arr[j])
+            result = (arr[start], arr[end])
             r = abs(tmp)
         if tmp > 0:
-            j -= 1
+            end -= 1
         else:
-            i += 1
+            start += 1
     return result
 result = binary_search(arr)
 print(result[0], result[1])
