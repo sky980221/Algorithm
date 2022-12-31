@@ -1,3 +1,4 @@
+
 from math import floor
 import sys
 
@@ -15,4 +16,4 @@ else:
             end = mid - 1
         else:
             start = mid + 1
-    print(end + 1)
+    print(end + 1) 
