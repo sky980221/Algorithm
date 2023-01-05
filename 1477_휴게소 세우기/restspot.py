@@ -1,26 +1,24 @@
 import sys
-N,M,L = list(map(int,sys.stdin.readline().split()))
-arr = list(map(int,sys.stdin.readline().split()))
-
-arr.append(0)
-arr.append(L-1)
+N,M,L = map(int,sys.stdin.readline().split())
+arr = [0]+ list(map(int,sys.stdin.readline().split())) +[L]
 arr.sort()
-start, end = 0, arr[-1]
 
-
-
+start, end = 1, L-1
+result = 0
 while start <= end:
+    count = 0 
     mid = (start+end)//2
-    cnt = 0
     for i in range(1, len(arr)):
-        if mid < arr[i]-arr[i-1]:
-            cnt += (arr[i]-arr[i-1] - 1)//mid
-    if cnt > M:
+        if arr[i]-arr[i-1]>mid: 
+            #두 휴게소 사이의 거리가 mid보다 클 시엔
+            #그 거리 -1을 mid로 나눈 값을 카운트에 더한다 
+            count += (arr[i]-arr[i-1] - 1)//mid
+    if count > M:
         start = mid + 1
     else:
         end = mid - 1
-        answer = mid
-print(answer)
+        result = mid
+print(result)
 """
 0 ≤ N ≤ 50
 1 ≤ M ≤ 100
