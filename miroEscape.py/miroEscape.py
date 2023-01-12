@@ -34,7 +34,7 @@ def BFS():
                     #방문할 수 있나? 그렇다면 큐에 삽입
                     queue.append((nx,ny))
                     #인접 노드 방문 기록
-                    check[nx][ny] = 1
+                    check[nx][ny] == 1
                     #직전 칸수  + 1 해줍니다
                     count[nx][ny] = count[x][y] + 1 
                 
