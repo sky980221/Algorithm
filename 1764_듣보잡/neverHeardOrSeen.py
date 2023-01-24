@@ -1,18 +1,18 @@
 import sys
-N,M = list(map(int, sys.stdin.readline().split()))
-heardArr = []
-seenArr = []
-commonArr = []
-for _ in range(N):
-    heardArr.append(sys.stdin.readline().rstrip())
-for _ in range(M):
-    seenArr.append(sys.stdin.readline().rstrip())
 
-for i in heardArr:
-    if i in seenArr:
-        commonArr.append(i)
-commonArr.sort()
+N, M = map(int, sys.stdin.readline().split())
+heardArr = set()
+seenArr = set()
+
+for _ in range(N):
+    heardArr.add(sys.stdin.readline().rstrip())
+for _ in range(M):
+    seenArr.add(sys.stdin.readline().rstrip())
+
+commonArr = sorted(list(heardArr & seenArr))
 print(len(commonArr))
 
-for i in range(len(commonArr)):
-    print(commonArr[i])
+for i in commonArr:
+    print(i)
+
+# 배열로 풀면 시간 초과가 떠서 안되고 set()을 이용해 교집합으로 풀어야함. 주의할 점은 set에 element를 추가할 때는 append가 아닌 add를 사용해준다.
