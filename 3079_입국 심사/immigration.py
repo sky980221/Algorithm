@@ -14,7 +14,7 @@ while start <= end:
     if total >= M:
         #시간을 더 늘려줌
         end = mid - 1
-        result = min(result, mid)
+        result = mid
     else:
         #시간이 충분하다는거니까 시간을 줄여준다.
         start = mid + 1
