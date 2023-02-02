@@ -1,19 +1,25 @@
-N = int(input())
-M = int(input())
-remote = {str(x) for x in range(10)}
+import sys
 
-if M != 0:
-    remote = remote - set(map(input().split()))
+input = sys.stdin.readline
+target = int(input())
+n = int(input())
+broken = list(map(int, input().split()))
 
-minCount = abs(100 - N)
+# 현재 채널에서 + 혹은 -만 사용하여 이동하는 경우
+moveMySelf = abs(100 - target)
 
-for k in range(1000001):
-    num= str(k)
-    for i in range(len(k)):
-        if num[i] not in remote:
+#더 큰수에서 내려올 수도 있기 때문에 1000001로 잡아준다.
+for nums in range(1000001):
+    nums = str(nums)
+
+    for j in range(len(nums)):
+        print(nums[j])
+        # 각 숫자가 고장났는지 확인 후, 고장 났으면 break
+        if int(nums[j]) in broken:
             break
-        if i == len(num)-1:
-            minCount = min(minCount, abs(N-k)+len(num))
 
-print(minCount)
-        
+        # 고장난 숫자 없이 마지막 자리까지 왔다면 min_count 비교 후 업데이트
+        elif j == len(nums) - 1:
+            moveMySelf = min(moveMySelf, abs(int(nums) - target) + len(nums))
+
+print(moveMySelf)
