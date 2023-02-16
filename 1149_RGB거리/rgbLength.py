@@ -1,9 +1,10 @@
-N = int(input())
+import sys
+N = int(sys.stdin.readline())
 color = []
 price = []
 
 for _ in range(N):
-    color.append(list(map(int, input().split())))
+    color.append(list(map(int, sys.stdin.readline().split())))
 
 for i in range(1, len(color)):
     color[i][0] = min(color[i-1][1], color[i-1][2]) + color[i][0]
