@@ -9,3 +9,23 @@ answer = list(combinations_with_replacement(arr, M))
 
 for i in range(len(answer)):
     print(*(answer[i]))
+
+
+"""
+백트래킹 사용
+n,m = map(int, input().split())
+ 
+s = []
+ 
+def dfs(start):
+    if len(s)==m:
+        print(' '.join(map(str,s)))
+        return
+    
+    for i in range(start, n+1):
+        s.append(i)
+        dfs(i)
+        s.pop()
+    
+dfs(1) 
+"""
