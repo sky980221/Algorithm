@@ -25,4 +25,4 @@ for i in range(N):
         if len(arr) == 0:
             print(-1)
         else:
-            print(stack[-1])
+            print(arr[-1])
