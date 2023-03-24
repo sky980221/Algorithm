@@ -1,22 +1,21 @@
 import sys
+input = sys.stdin.readline
 
-N = int(sys.stdin.readline())
-arr = list(map(int, sys.stdin.readline().split()))
-budget = int(sys.stdin.readline())
-
-start, end = 0, max(arr)
+N = int(input())
+cities = list(map(int, input().split()))
+budgets = int(input())
+start, end = 0, max(cities)
 
 while start <= end:
-    mid = (start + end) // 2
-    num = 0
-    for i in arr:
-        if i >= mid:
-            num+= mid
+    mid = (start+end) // 2
+    total = 0
+    for i in cities:
+        if i > mid:
+            total += mid
         else:
-            num += i
-    if num <= budget:
+            total += i
+    if total <= budgets:
         start = mid + 1
     else:
         end = mid - 1
-
 print(end)
