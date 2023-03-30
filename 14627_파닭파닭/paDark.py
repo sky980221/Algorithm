@@ -1,26 +1,26 @@
 import sys
 
-input = sys.stdin.readline
-
-s, c = map(int, input().split())
-L = [int(input()) for _ in range(s)]
-
-start = 0
-end = 1000000000
-
-resChick = 0
-
-while (start <= end):
+S, C = map(int, sys.stdin.readline().split())
+arrL = []
+cnt = 0
+left = 0
+for _ in range(S):
+    arrL.append(int(sys.stdin.readline()))
+arrL.sort()
+usingForChicken = 0
+start, end = 0, 1000000000 #왜 min(arrL)이 아닌지 잘 모르겠음 ! 자르는 건 다 똑같을 것 같은데
+while start <= end:
     mid = (start + end) // 2
-    if mid == 0:
-        mid = 1
-
-    cnt = sum(pa // mid for pa in L)
-    if cnt >= c:
-        resChick = max(resChick, mid)
+    cnt = 0
+    for i in arrL:
+        if mid == 0:
+            mid = 1
+        cnt += i // mid
+    if cnt >= C:
+        usingForChicken = max(usingForChicken, mid)
         start = mid + 1
     else:
         end = mid - 1
+left = sum(arrL) - C * usingForChicken
 
-res = sum(L) - (c * resChick)
-print(res)
+print(left)
