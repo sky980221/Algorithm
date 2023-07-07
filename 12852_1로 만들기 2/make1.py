@@ -1,25 +1,30 @@
 n = int(input())
 
-dp = [i for i in range(n + 1)]
-dp[1] = 0
-answer = [i for i in range(n + 1)]
-answer[1] = 0
+dp = [0] * (n+1)
 
 for i in range(2, n + 1):
-    dp[i] = dp[i - 1] + 1
-    answer[i] = i - 1
 
-    if i % 3 == 0 and dp[i] > dp[i // 3] + 1:
-        dp[i] = dp[i // 3] + 1
-        answer[i] = i // 3
-    if i % 2 == 0 and dp[i] > dp[i // 2] + 1:
-        dp[i] = dp[i // 2] + 1
-        answer[i] = i // 2
+    # 1을 뺀 경우
+    dp[i] = dp[i - 1] + 1
+
+    # 2로 나누어 떨어지면
+    if i % 2 == 0:
+        dp[i] = min(dp[i], dp[i // 2] + 1)
+
+    if i % 3 == 0:
+        dp[i] = min(dp[i], dp[i // 3] + 1)
 
 print(dp[n])
-print(n, end=" ")
 
-target = n
-while answer[target] != 0:
-    print(answer[target], end=" ")
-    target = answer[target]
+res = [n]
+now = n
+temp = dp[n] - 1
+
+# n부터 하나씩 줄여나가면서 순서 찾기
+for i in range(n, 0, -1):
+    if dp[i] == temp and (i + 1 == now or i * 2 == now or i * 3 == now):
+        now = i
+        res.append(i)
+        temp -= 1
+
+print(*res)
