@@ -1,3 +1,4 @@
+"""
 import sys
 from collections import deque
 
@@ -18,3 +19,35 @@ while queue:
             queue.append(nx)
             visited[nx] = 1
 print(sum(visited) - 1)
+
+"""
+
+# 20230711 복습
+
+import sys
+
+input = sys.stdin.readline
+from collections import deque
+
+numOfCom = int(input())  # 노드 개수
+numOfPairs = int(input())  # 간선 개수
+graph = [[] for _ in range(numOfCom+1)]
+visited = [0] * numOfCom+1
+for i in range(numOfPairs):
+    x, y = map(int, input().split())
+    graph[x].append(y)
+    graph[y].append(x)
+
+cnt = 0
+def dfs(start):
+    global cnt
+    visited[start] = 1
+    for i in graph[start]:
+        if visited[i] == 0:
+            dfs(i)
+            cnt +=1
+
+dfs(1)
+print(cnt)
+
+def dfs():
