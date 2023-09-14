@@ -1,31 +1,21 @@
-class Solution {
- public:
-  bool wordBreak(string s, vector<string>& wordDict) {
-    const int n = s.length();
-    const int maxLength = getMaxLength(wordDict);
-    const unordered_set<string> wordSet{begin(wordDict), end(wordDict)};
-    vector<int> dp(n + 1);
-    dp[0] = true;
+class Solution:
+    def wordBreak(self, s: str, wordDict: List[str]) -> bool:
 
-    for (int i = 1; i <= n; ++i)
-      for (int j = i - 1; j >= 0; --j) {
-        if (i - j > maxLength)
-          break;
-        if (dp[j] && wordSet.count(s.substr(j, i - j))) {
-          dp[i] = true;
-          break;
-        }
-      }
+        def construct(current, wordDict, memo={}):
+            if current in memo:
+                return memo[current]
 
-    return dp[n];
-  }
+            if not current:
+                return True
 
- private:
-  int getMaxLength(const vector<string>& wordDict) {
-    return max_element(begin(wordDict), end(wordDict),
-                       [](const auto& a, const auto& b) {
-                         return a.length() < b.length();
-                       })
-        ->length();
-  }
-};
+            for word in wordDict:
+                if current.startswith(word):
+                    new_current = current[len(word):]
+                    if construct(new_current, wordDict, memo):
+                        memo[current] = True
+                        return True
+
+            memo[current] = False
+            return False
+
+        return construct(s, wordDict)
