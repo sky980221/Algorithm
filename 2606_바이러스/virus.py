@@ -23,7 +23,7 @@ print(sum(visited) - 1)
 """
 
 # 20230711 복습
-
+"""
 import sys
 
 input = sys.stdin.readline
@@ -49,3 +49,28 @@ def dfs(start):
 
 dfs(1)
 print(cnt)
+"""
+#20240109 복습
+from collections import deque
+n = int(input())
+m = int(input())
+# 1번이 감염되는걸 고정으로 함.
+graph = [[] for i in range(n + 1)]
+visited = [0] * (n + 1)
+
+for i in range(m):
+    a, b = map(int, input().split())
+    graph[a] += [b]
+    graph[b] += [a]
+
+#[[], [2,5], [1,3,5], [2], [7], [1,2,6], [5], [4]]
+
+visited[1]=1 # 1번 컴퓨터부터 시작이니 방문 표시
+Q=deque([1])
+while Q:
+    c=Q.popleft()
+    for nx in graph[c]:
+        if visited[nx]==0:
+            Q.append(nx)
+            visited[nx]=1
+print(sum(visited)-1)
