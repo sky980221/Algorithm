@@ -1,22 +1,19 @@
 import sys
-import re
+input = sys.stdin.readline
+"""
+N+1개의 I와 N개의 O로 이루어져 있으면, I와 O이 교대로 나오는 문자열을 PN이라고 한다.
+P1 = IOI 니까 
+PN = 
+"""
 
-N = int(sys.stdin.readline())
-M = int(sys.stdin.readline())
-S = sys.stdin.readline()
-
+N = int(input())
+M = int(input())
+S = input().rstrip()
+PN = str("IO" * N + "I")
 cnt = 0
-pattern = 0
-i = 1
 
-while i < M-1:
-    if S[i-1] == 'I' and S[i] == 'O' and S[i+1] == 'I':
-        pattern += 1
-        if pattern == N:
-            pattern -= 1
-            cnt += 1
-        i += 1
-    else:
-        pattern = 0
-    i += 1
+for start in [i for i in range(M - len(PN) + 1) if S[i] == 'I']:
+    end = start + len(PN)
+    if S[start:end] == PN:
+        cnt += 1
 print(cnt)
