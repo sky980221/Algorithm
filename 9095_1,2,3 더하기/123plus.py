@@ -1,18 +1,15 @@
-T = int(input())
+import sys
 
-for i in range(T) :
-    n = int(input())
-    dp = [0]*(n+1)
-    if n == 1 :
-        print(1)
-    elif n == 2 :
-        print(2)
-    elif n == 3 :
-        print(4)
-    else :
-        dp[1] = 1
-        dp[2] = 2
-        dp[3] = 4
-        for j in range(4,n+1) :
-            dp[j] = dp[j-1] + dp[j-2] + dp[j-3]
-        print(dp[n])
+n = int(input())
+
+arr = [0] * 11
+arr[1] = 1
+arr[2] = 2
+arr[3] = 4
+
+for i in range(4,11):
+    arr[i] = arr[i-1] + arr[i-2] + arr[i-3]
+
+for i in range(0,n):
+    testNum = int(input())
+    print(arr[testNum])
