@@ -1,27 +1,23 @@
-import sys
-
-input = sys.stdin.readline
-
-
-def golden(x):
-    if x == 1:
+# 소수 구하기 - 에레토스테네스의 체
+def isPrime(num):
+    if num == 1:
         return False
-    for i in range(2, int(x ** 0.5) + 1):
-        if x % i == 0:
-            return False
-    return True
+    else:
+        for i in range(2, int(num ** 0.5) + 1):
+            if num % i == 0:
+                return False
+        return True
 
 
-t = int(input())
-for i in range(t):
+t = int(input())  # test case
+
+for _ in range(t):
     n = int(input())
+    tmp = n // 2
 
-    a, b = n // 2, n // 2
-    while a > 0:
-        if golden(a) and golden(b):
-            print(a, b)
-            break
-
-        else:
-            a -= 1
-            b += 1
+    while tmp > 0:
+        if isPrime(tmp):
+            if isPrime(n - tmp):
+                print(tmp, n - tmp)
+                break
+        tmp -= 1
