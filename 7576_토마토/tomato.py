@@ -1,43 +1,37 @@
 import sys
 from collections import deque
-M, N = map(int, sys.stdin.readline().split())
-graph= []
-for i in range(N):
-    graph.append(list(map(int, sys.stdin.readline().split())))
-queue = deque([])
-dx, dy = [-1, 1, 0, 0], [0, 0, -1, 1]
-count = 0
+input = sys.stdin.readline
 
-for i in range(N):
-    for j in range(M):
-        if graph[i][j] == 1:
-            queue.append([i,j])
-def BFS():   
-    while queue:
-        x,y = queue.popleft() 
-        for i in range(4):
-            nx, ny = dx[i] + x, dy[i] + y
-            if 0<=nx< N and 0<= ny < M and graph[nx][ny] == 0:
-                graph[nx][ny] = graph[x][y]+1
-                queue.append([nx,ny])
+m, n = map(int, input().split())
+arr = [list(map(int, input().split())) for _ in range(n)]
+q = deque()
 
-BFS()
+for i in range(n):
+    for j in range(m):
+        if arr[i][j] == 1:
+            # 익은 토마토(1)의 좌표를 큐에 저장
+            q.append([i, j])
 
+dx, dy = [1, -1, 0, 0], [0, 0, 1, -1]
+while q:
+    x, y = q.popleft()
+    for i in range(4):
+        # 익은 토마토 상하좌우 돌면서 일수 저장
+        nx = x + dx[i]
+        ny = y + dy[i]
 
-for i in graph:
-    for j in i:
-        if j == 0:
+        if 0 <= nx < n and 0 <= ny < m:
+            if arr[nx][ny] == 0:
+                arr[nx][ny] = arr[x][y] + 1
+                q.append([nx, ny])
+
+ans = 0
+for line in arr:
+    for tomato in line:
+        if tomato == 0:
+            # 안익은 토마토(0)이 있으면 바로 정지
             print(-1)
-            exit(0)
-    count = max(count,max(i))
-
-print(count-1)
-"""
-Test Case 1 
-6 4
-0 -1 0 0 0 0
--1 0 0 0 0 0
-0 0 0 0 0 0
-0 0 0 0 0 1
-출력 -1 
-"""
+            exit()
+    ans = max(ans, max(line))
+# 1에서 시작했기 때문에 결과 값에서 1빼주기
+print(ans-1)
