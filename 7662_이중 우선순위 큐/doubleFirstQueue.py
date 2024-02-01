@@ -13,15 +13,20 @@ for _ in range(t):
             visitied[i] = True
 
         else:
+            # 최소힙구현
             if number == "-1":
+                # 큐에 들어있고 visitied가 False라면 max_heap에서 삭제된 원소
                 while min_heap and not visitied[min_heap[0][1]]:
                     heapq.heappop(min_heap)
+                if min_heap:  # 큐에 들어있는경우(visited = True)
                     visitied[min_heap[0][1]] = False
                     heapq.heappop(min_heap)
+            # 최대힙 구현
             if number == "1":
+                # 큐에 들어있고 visitied가 False라면 min_heap에서 삭제된 원소
                 while max_heap and not visitied[max_heap[0][1]]:
                     heapq.heappop(max_heap)
-                if max_heap:
+                if max_heap:  # 큐에 들어있는 경우(visitied = True)
                     visitied[max_heap[0][1]] = False
                     heapq.heappop(max_heap)
     while min_heap and not visitied[min_heap[0][1]]:
